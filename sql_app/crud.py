@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from sql_app import models, schemas, database
+from sql_app import models, schemas
 
 
 def get_user(db: Session, user_id: int):
@@ -35,11 +35,12 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.refresh(db_item)
     return db_item
 
-#***************************************************************************
+
+# ***************************************************************************
 def create_new_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db_item = models.Item(**item.dict(), owner_id=user_id)
     db.add(db_item)
     db.commit()
     db.refresh(db_item)
     return db_item
-#**************************************************************************8
+# **************************************************************************8
