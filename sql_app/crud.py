@@ -37,8 +37,13 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
 
 
 # ***************************************************************************
-def create_new_item(db: Session, item: schemas.ItemCreate, user_id: int):
-    db_item = models.Item(**item.dict(), owner_id=user_id)
+def create_new_item(db: Session, item: schemas.NewItem):
+    #db_item = models.NewItem(**item.dict())
+    print(item.dict())
+    item.id=256
+    item.title="Popat"
+    item.description="lal"
+    db_item = models.NewItem(**item.dict())
     db.add(db_item)
     db.commit()
     db.refresh(db_item)

@@ -55,10 +55,12 @@ def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 # ******************************************************
 
-@app.post("/newitem/{user_id}/newitems/", response_model=schemas.Item)
+@app.post("/newitem/{user_id}/newitems/", response_model=schemas.NewItem)
 def create_item_for_user(
-        user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
+        user_id: int, item: schemas.NewItem, db: Session = Depends(get_db)
 ):
-    return crud.create_new_item(db=db, item=item, user_id=user_id)
+    print("New Item")
+    crud.create_new_item(db=db, item=item)
+    return {"Done":"Well"}
 
 # *******************************************************

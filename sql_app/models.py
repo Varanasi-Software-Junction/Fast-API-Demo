@@ -13,7 +13,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
-    
+
 
 class Item(Base):
     __tablename__ = "items"
@@ -29,9 +29,9 @@ class Item(Base):
 # ****************************************************************
 
 class NewItem(Base):
-    __tablename__ = "newitems"
+    __tablename__ = "itemstable"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     title = Column(String, index=True)
     description = Column(String, index=True)
 
