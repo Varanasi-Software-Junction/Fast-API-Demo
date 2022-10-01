@@ -24,6 +24,16 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
+
+def create_new_user(db: Session,email:str):
+    
+    db_user = models.User(email=email, hashed_password="pwd",is_active=True)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+
 def get_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Item).offset(skip).limit(limit).all()
 
